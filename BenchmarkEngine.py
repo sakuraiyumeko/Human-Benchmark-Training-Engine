@@ -1,7 +1,7 @@
 from pathlib import Path
 import importlib
 import time
-from plugin.lib.CoreLib import clear, ErrorFlash, MenuTemplate
+from plugin.lib.CoreLib import clear, ErrorFlash, MenuTemplate, InputManage
 
 
 def catch_plugins():
@@ -33,34 +33,24 @@ pname = [p[0] for p in plist]
 main_menu = MenuTemplate(
     title="Human Benchmark Trainer", subtitle="Main Page", context=pname
 )
+main_choose = InputManage(max_val=len(pname) + 1)
 
 
 def choose():
-    try:
-        choice = int(input())
-    except ValueError:
-        ErrorFlash()
-        return True
-
-    if choice > len(plist) + 1 or choice < 1:
-        ErrorFlash()
+    choice = main_choose.get_int()
+    if choice == None:
         return True
 
     if choice == len(plist) + 1:
         return False
 
-    try:
-        clear()
-        plist[choice - 1][1].main()
-        return True
-    except Exception as e:
-        print(f"Oops! Somthing went wrong: {e}")
-        ErrorFlash("Returning to the main menu...", 1.35)
+    clear()
+    plist[choice - 1][1].main()
+    return True
 
 
 def main():
     while True:
-        clear()
         main_menu.menu()
         isB = choose()
         if isB == False:

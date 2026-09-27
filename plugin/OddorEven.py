@@ -1,10 +1,14 @@
-from plugin.lib.CoreLib import Random, ErrorFlash,MenuTemplate
+from plugin.lib.CoreLib import Random, ErrorFlash, MenuTemplate, InputManage
 import time
 
-#Plugin name
+# Plugin name
 NAME = "Odd or Even"
+MENU_OPTIONS = ["10 Rounds", "25 Rounds", "50 Rounds", "Custom"]
 
-#Main feature
+OoE_menu1 = MenuTemplate(title=NAME, subtitle="Modes", context=MENU_OPTIONS)
+
+
+# Main feature
 def judge(que, ans):
     if que % 2 == ans:
         return "Correct"
@@ -16,8 +20,8 @@ def core():
     while True:
         print("Choose a difficulty(>=1): ", end="")
         try:
-            temp_1_input=int(input())
-            if temp_1_input<1:
+            temp_1_input = int(input())
+            if temp_1_input < 1:
                 ErrorFlash("level must greater than 0.")
                 continue
             else:
@@ -51,8 +55,11 @@ def core():
             break
     return 0
 
+
 def main():
-    return 0
+    OoE_menu1.menu()
+    time.sleep(2)
+
 
 if __name__ == "__main__":
     main()

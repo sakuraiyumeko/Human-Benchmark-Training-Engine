@@ -20,10 +20,11 @@ class MenuTemplate:
 
     def menu(self):
         i = 1
+        clear()
         if self._check_legality() == True:
-            print("-" * (len(self.name1) + 2))
-            print("*", self.name1, "*", sep="")
-            print("-" * (len(self.name1) + 2))
+            print("-" * 50)
+            print("*", self.name1.center(48, " "), "*", sep="")
+            print("-" * 50)
             print(self.name2)
             print()
 
@@ -33,9 +34,28 @@ class MenuTemplate:
 
             print(i, ". ", "quit", sep="")
             print()
-            print("Choose an option: ", end="")
+            print("Choose an option: ", end="",flush=True)
         else:
             raise TypeError("Error(CoreLib.MenuTemplate): Invalid menu context type")
+
+
+class InputManage:
+    def __init__(self, min_val=1, max_val=4):
+        self.min = min_val
+        self.max = max_val
+
+    def get_int(self):
+        while True:
+            try:
+                value = int(input())
+                if self.min > value or self.max < value:
+                    print("Invalid input.")
+                    return None
+                else:
+                    return value
+            except (ValueError, TypeError):
+                ErrorFlash()
+                return None
 
 
 def clear():
