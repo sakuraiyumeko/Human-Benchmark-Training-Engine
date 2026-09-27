@@ -13,7 +13,7 @@ class MenuTemplate:
         self.list = context
 
     def _check_legality(self):
-        if type(self.list) == list:
+        if isinstance(self.list, list):
             return True
         else:
             return False

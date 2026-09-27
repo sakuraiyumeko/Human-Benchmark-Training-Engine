@@ -38,7 +38,7 @@ main_choose = InputManage(max_val=len(pname) + 1)
 
 def choose():
     choice = main_choose.get_int()
-    if choice == None:
+    if choice is None:
         return True
 
     if choice == len(plist) + 1:
@@ -55,9 +55,7 @@ def main():
         isB = choose()
         if isB == False:
             break
-        else:
-            continue
     return 0
 
-
-main()
+if __name__ == "__main__":
+    main()
