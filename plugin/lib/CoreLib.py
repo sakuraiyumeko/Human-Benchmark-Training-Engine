@@ -6,6 +6,38 @@ import os
 random.seed(time.time_ns())
 
 
+class MenuTemplate:
+    def __init__(self, title="TITLE", subtitle="SUBTITLE", context=[]):
+        self.name1 = title
+        self.name2 = subtitle
+        self.list = context
+
+    def _check_legality(self):
+        if type(self.list) == list:
+            return True
+        else:
+            return False
+
+    def menu(self):
+        i = 1
+        if self._check_legality() == True:
+            print("-" * (len(self.name1) + 2))
+            print("*", self.name1, "*", sep="")
+            print("-" * (len(self.name1) + 2))
+            print(self.name2)
+            print()
+
+            for l in self.list:
+                print(i, ". ", l, sep="")
+                i += 1
+
+            print(i, ". ", "quit", sep="")
+            print()
+            print("Choose an option: ", end="")
+        else:
+            raise TypeError("Error(CoreLib.MenuTemplate): Invalid menu context type")
+
+
 def clear():
     subprocess.run("cls" if os.name == "nt" else "clear", shell=True)
 
@@ -27,5 +59,7 @@ def Random(level=1, count=1):
 def ErrorFlash(msg="Invalid input.", delay=0.7, isclear=1):
     print(msg)
     time.sleep(delay)
-    if isclear==1: clear()
-    else: return 0
+    if isclear == 1:
+        clear()
+    else:
+        return 0

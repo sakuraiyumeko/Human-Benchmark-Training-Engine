@@ -1,9 +1,10 @@
-from plugin.lib.CoreLib import Random, ErrorFlash
+from plugin.lib.CoreLib import Random, ErrorFlash,MenuTemplate
 import time
 
+#Plugin name
 NAME = "Odd or Even"
 
-
+#Main feature
 def judge(que, ans):
     if que % 2 == ans:
         return "Correct"
@@ -11,7 +12,7 @@ def judge(que, ans):
         return "Wrong"
 
 
-def main():
+def core():
     while True:
         print("Choose a difficulty(>=1): ", end="")
         try:
@@ -50,6 +51,8 @@ def main():
             break
     return 0
 
+def main():
+    return 0
 
 if __name__ == "__main__":
     main()
