@@ -12,4 +12,5 @@ def cycle(count, min, max):
 
 
 def Random(level=1, count=1):
-    return cycle(count,10**(level-1),10**level-1)
+    assert level >= 1, "level must greater than 0."
+    return cycle(count, 10 ** (level - 1), 10**level - 1)
