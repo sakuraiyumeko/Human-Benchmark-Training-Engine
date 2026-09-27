@@ -1,7 +1,8 @@
 from pathlib import Path
 import importlib
 import time
-from plugin.lib.CoreLib import clear
+from plugin.lib.CoreLib import clear,ErrorFlash
+
 
 
 def catch_plugins():
@@ -54,15 +55,11 @@ def choose():
     try:
         choice = int(input())
     except ValueError:
-        print("Invalid input.")
-        time.sleep(0.7)
-        clear()
+        ErrorFlash()
         return True
 
     if choice > len(plist) + 1 or choice < 1:
-        print("Invalid input.")
-        time.sleep(0.7)
-        clear()
+        ErrorFlash()
         return True
 
     if choice == len(plist) + 1:
@@ -74,9 +71,7 @@ def choose():
         return True
     except Exception as e:
         print(f"Oops! Somthing went wrong: {e}")
-        print("Returning to the main menu...")
-        time.sleep(1.35)
-        clear()
+        ErrorFlash("Returning to the main menu...",1.35)
 
 
 def main():
