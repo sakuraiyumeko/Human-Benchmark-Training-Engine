@@ -33,12 +33,13 @@ def core(op, custom=1):
         OoE_input.max = 2
         OoE_input.isc = 0
         que = Random(level)[0]
-        print("Odd or Even? (Odd=1, Even=0)")
+        print("Odd or Even? (Odd=1, Even=2)")
         print(que)
         start = time.perf_counter()
         ans = OoE_input.get_int()
         end = time.perf_counter()
         if ans is None:
+            clear()
             continue
         OoE_input.isc = 1
         times = end - start
@@ -68,6 +69,7 @@ def choose():
 
     if choice == 5:
         print("How many questions do you want?", end="")
+        OoE_input.max=100000
         count = OoE_input.get_int()
         if count is None:
             return False
