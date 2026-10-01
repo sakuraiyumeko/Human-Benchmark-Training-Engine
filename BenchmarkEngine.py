@@ -31,7 +31,7 @@ plist = catch_plugins()
 pname = [p[0] for p in plist]
 
 main_menu = MenuTemplate(
-    title="Human Benchmark Trainer", subtitle="Main Page", context=pname
+    title="Human Benchmark Trainer", subtitle="Homepage", context=pname
 )
 main_choose = InputManage(max_val=len(pname) + 1)
 
@@ -39,21 +39,21 @@ main_choose = InputManage(max_val=len(pname) + 1)
 def choose():
     choice = main_choose.get_int()
     if choice is None:
-        return True
+        return False
 
     if choice == len(plist) + 1:
-        return False
+        return True
 
     clear()
     plist[choice - 1][1].main()
-    return True
+    return False
 
 
 def main():
     while True:
         main_menu.menu()
         isB = choose()
-        if isB == False:
+        if isB == True:
             break
     return 0
 

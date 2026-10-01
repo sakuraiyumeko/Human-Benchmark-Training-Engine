@@ -34,27 +34,28 @@ class MenuTemplate:
 
             print(i, ". ", "quit", sep="")
             print()
-            print("Choose an option: ", end="",flush=True)
+            print("Choose an option: ", end="", flush=True)
         else:
             raise TypeError("Error(CoreLib.MenuTemplate): Invalid menu context type")
 
 
 class InputManage:
-    def __init__(self, min_val=1, max_val=4):
+    def __init__(self, min_val=1, max_val=4, isclear=1):
         self.min = min_val
         self.max = max_val
+        self.isc = isclear
 
     def get_int(self):
         while True:
             try:
                 value = int(input())
                 if self.min > value or self.max < value:
-                    print("Invalid input.")
+                    ErrorFlash(isclear=self.isc)
                     return None
                 else:
                     return value
             except (ValueError, TypeError):
-                ErrorFlash()
+                ErrorFlash(isclear=self.isc)
                 return None
 
 
